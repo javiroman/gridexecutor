@@ -1,0 +1,36 @@
+Methods invocations (Ice 3.5.1)
+~~~~~~~~~~~~~~~~~~~
+
+- Synchronous Method Invocation
+
+Este es el comportamiento por defecto de Ice, usa remote procedure call 
+síncrona. Es decir, se comporta como un local procedure call,  el código
+llamador es suspendido hasta que la invocación retorna de su ejecución.
+
+- Asynchronous Method Invocation (AMI)
+
+El cliente puede invocar operaciones asíncronamente. El código del cliente 
+continua despues de la invocación del método (no queda bloqueado), luego 
+tendremos que para el código nosotros de alguna manera para que el programa 
+cliente no termine. Para realizar AMI, el cliente usa un proxy como la normal 
+invocación, pero además de pasar los parámetros normales del método, también 
+debe pasar un callback object para que el server cuando termine la ejecución 
+del método invoca dicho callback donde pasará los resultados de la invocación 
+del método.
+
+More: https://doc.zeroc.com/display/Ice/Asynchronous+Method+Invocation+%28AMI%29+in+Python
+
+- Asynchronous Method Dispatch (AMD)
+
+Es el server-side equivalente al AMI (que es client-side). El synchronous 
+method dispach, el método por defecto,  el código del server es ejecutado 
+síncronamente, el thread que ejecuta dicho código queda bloqueado hasta que 
+termina la ejecución del método. Por el otro lado, cuando al server le llega 
+una request del cliente, el server no despacha la petición inmediatamente, 
+puede retrasar la respuesta a la petición.
+
+More: https://doc.zeroc.com/display/Ice/Asynchronous+Method+Dispatch+%28AMD%29+in+Python
+
+More: https://doc.zeroc.com/display/Ice/The+Ice+Run+Time+in+Detail
+
+

@@ -1,0 +1,70 @@
+- POSTing data to a REST resource:
+
+curl -i -H "Accept: application/json" -X POST -d "firstName=james" http://192.168.0.165/persons/person  
+
+i – show response headers
+H – pass request headers to the resource
+X – pass a HTTP method name
+d – pass in parameters enclosed in quotes; multiple parameters are separated 
+by ‘&’ The above command posts the first name “james” to the persons resource. 
+Assuming the server creates a new person resource with first name of James, 
+I also tell the server to return a json representation of the newly created resource.
+
+- PUT a resource:
+
+curl -i -H "Accept: application/json" -X PUT -d "phone=1-800-999-9999" http://192.168.0.165/persons/person/1  
+
+This puts a phone number to the person resource created in the previous example.
+
+- GET a resource:
+
+curl -i -H "Accept: application/json" http://192.168.0.165/persons/person/1 
+
+For GET requests, the -X GET option is optional.
+
+curl -i -H "Accept: application/json" http://192.168.0.165/persons?zipcode=93031  
+
+You can pass in query parameters by appending it to the url.
+
+curl -i -H "Accept: application/json" "http://192.168.0.165/persons?firstName=james&lastName=wallis"  
+
+The resource uri needs to be quoted if you pass in multiple query parameters 
+separated by ‘&’. If you have spaces in the query values, you should encode 
+them i.e. either use the ‘+’ symbol or %20 instead of the space.
+
+- DELETE a resource:
+
+curl -i -H "Accept: application/json" -X DELETE http://192.168.0.165/persons/person/1  
+
+To delete a resource, supply DELETE as a -X option.
+
+- Using POST to PUT a resource:
+
+curl -i -H "Accept: application/json" -H "X-HTTP-Method-Override: PUT" -X POST -d "phone=1-800-999-9999" http://192.168.0.165/persons/person/1  
+
+Some clients do not support PUT or it’s difficult to send in a PUT request. 
+For these cases, you could POST the request with a request header of 
+X-HTTP-Method-Override set to PUT. What this tells the server is that the 
+intended request is a PUT. Most web servers (or you could code it) support the 
+X-HTTP-Method-Override and convert the request method to the intended HTTP 
+method (value of the X-HTTP-Method-Override)
+
+- Using POST to DELETE a resource:
+
+curl -i -H "Accept: application/json" -H "X-HTTP-Method-Override: DELETE" -X POST http://192.168.0.3:8090/persons/person/1 
+
+
+Another good tool to test REST resources is the Poster Firefox Add-on. 
+It’s a great GUI tool if you do not want to get down and dirty with cURL.
+
+Web.py
+~~~~~~
+
+curl -i -H "Accept: application/json" http://sgt2-master:8888/apagar
+
+
+
+
+
+
+

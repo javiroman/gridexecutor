@@ -1,0 +1,29 @@
+gridexecutor/
+├── LICENSE
+├── README
+├── doc/
+├── test/
+├── gridexecutor.py        ==> Main program
+├── broker/
+│   ├── apirest.py         ==> WebService listener
+│   ├── app-descriptor.sh
+│   ├── app.xml
+│   ├── config.py
+│   ├── contract.ice
+│   ├── daemon.py
+│   ├── get-admincli.sh
+│   ├── get-files-icepath2.sh
+│   ├── gridclient.py      ==> Master client
+│   ├── gridlocator.cfg
+│   ├── __init__.py
+│   ├── job.py
+│   ├── jobqueues.py
+│   ├── templates
+│   └── view.py
+└── worker/
+    ├── _distrib-artifacts.sh
+    ├── fabexecutor.py
+    ├── fabfile.py
+    ├── update-server.sh
+    └── worker.py          ==> Slave worker machines
+

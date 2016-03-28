@@ -1,0 +1,79 @@
+Front-End - Webpy Python framework:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+python-webpy-0.32-8.el6_0.noarch.rpm
+
+- Package available in:
+
+	Red Hat CDN Channel - Red Hat CloudForms System Engine
+	Fedora hosted - https://apps.fedoraproject.org/packages/python-webpy
+
+- Upstream RHEL package based on:
+
+	https://github.com/webpy/webpy/tree/webpy-0.32
+
+- Upstream Last code Webpy in Github:
+
+	https://github.com/webpy/webpy/tree/webpy-0.37
+
+Controller - Zeroc ICE:
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Packages available in:
+
+	Fedora Koji - http://koji.fedoraproject.org/koji/packageinfo?packageID=4960
+
+- Zeroc Vendor:
+
+	# Ice core
+	yum localinstall ice-3.5.1-1.el6.noarch.rpm
+
+	# Ice Python support
+	yum localinstall ice-python-3.5.1-1.el6.x86_64.rpm \
+		ice-libs-3.5.1-1.el6.x86_64.rpm \
+		db53-5.3.21-1ice.el6.x86_64.rpm
+
+	# Ice Servers -> Icegrid.
+	yum localinstall ice-servers-3.5.1-1.el6.x86_64.rpm \
+		ice-utils-3.5.1-1.el6.x86_64.rpm
+
+
+Executor - Python Fabric:
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Fabric uses paramiko to implement a higher-level API for performing 
+commands over SSH, http://www.fabfile.org/.
+
+
+- Packages available in:
+	
+	Fedora Hosted - https://apps.fedoraproject.org/packages/fabric/overview
+
+- Current GitHub version v1.10.1:
+
+	https://github.com/fabric/fabric/tree/1.10.1
+
+	Installation from sources (breaks RHEL)
+	
+	git clone https://github.com/fabric/fabric.git
+	git show
+		commit 65de0b0b3a7203ec773ffe0e5ece80345c9f4202
+	sudo yum install python-devel
+	sudo yum install gcc
+	sudo python setup.py install
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

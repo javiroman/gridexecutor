@@ -1,0 +1,49 @@
+<icegrid>
+    <application name="GridExecutorApp" import-default-templates="true">
+
+        <replica-group id="grid">
+            <load-balancing type="round-robin" />
+            <object identity="ObjectIdentity"/>
+        </replica-group>
+
+        <server-template id="WorkerServerServantInstance">
+            <parameter name="nworkers" />
+            <server id="WorkerServer-${node}" exe="python" activation="on-demand" pwd="${server.distrib}">
+                <option>worker.py</option>
+                <!-- Directive distrib to enable icepatch2 distribution in nodes -->
+                <distrib/>
+                <properties>
+                    <!--property name="Ice.MessageSizeMax" value="20000"/-->
+		    <property name="Ice.ThreadPool.Server.Size" value="1"/>
+		    <property name="Ice.ThreadPool.Server.SizeMax" value="1"/>
+		    <property name="Ice.ThreadPool.Server.SizeWarn" value="1"/>
+		    <property name="Ice.Trace.ThreadPool" value="1"/>
+                    <property name="SchedulerType" value="serial" />
+                    <property name="NumberWorkers" value="${nworkers}"/>
+                    <property name="EXEHOME" value="/home/executor"/>
+                    <property name="MCRROOT" value="mcr/v73"/>
+                    <property name="AMEBADIR" value="ameba"/>
+                    <property name="ReportMail" value="info@cediant.es"/>
+                    <property name="AmebaTimeout" value="5" />
+                    <property name="JobTimeout" value="3" />
+                   <property name="LogLevel" value="DEBUG" />
+                </properties>
+                <adapter name="RemoteAdapter" register-process="true" endpoints="tcp" replica-group="grid" />
+            </server>
+        </server-template>
+
+        <node name="node1">
+            <!-- set IcePatch2Server port for use with icepatch2client for testing, and listen on all interfaces -->
+            <server-instance template="IcePatch2" endpoints="tcp -p 10002" directory="/opt/DISTRIB/Debug"/>
+            <server-instance template="WorkerServerServantInstance" nworkers="3"/>
+        </node>
+
+        <node name="node2">
+            <server-instance template="WorkerServerServantInstance" nworkers="3"/>
+        </node>
+
+        <node name="node3">
+            <server-instance template="WorkerServerServantInstance" nworkers="3"/>
+        </node>
+    </application>
+</icegrid>
